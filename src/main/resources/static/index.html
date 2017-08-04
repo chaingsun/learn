@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>土石方</title>
+<link rel="stylesheet" href="components/fontawesome/css/font-awesome.css" />
+<link rel="stylesheet" href="components/metisMenu/dist/metisMenu.css" />
+<link rel="stylesheet" href="components/animate.css/animate.css" />
+<link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="components/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+<link rel="stylesheet" href="components/fonts/pe-icon-7-stroke/css/helper.css" />
+<link rel="stylesheet" href="components/styles/style.css">
+<link rel="stylesheet" href="components/sweetalert/lib/sweet-alert.css" />
+<link rel="stylesheet" href="components/ui-select/dist/select.min.css" />
+<link rel="stylesheet" href="components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+<style type="text/css">
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control
+	{
+	background-color: #fff;
+	opacity: 1;
+}
+
+body.modal-open {
+	position: static !important;
+}
+
+.icheckbox_square-green, .iradio_square-green {
+	margin: -2px 5px 0 0 !important;
+}
+</style>
+</head>
+<body class="fixed-navbar">
+	<div class="splash">
+		<div class="color-line"></div>
+		<div class="splash-title">
+			<h1>土石方 - 工地工程监控</h1>
+			<img src="components/images/loading-bars.svg" width="64" height="64" />
+		</div>
+	</div>
+	<div id="header" ng-include="'views/common/header.html'"></div>
+	<aside id="menu" ng-include="'views/common/navigation.html'"></aside>
+
+	<div class="uiview">
+		<div id="wrapper">
+			<div ui-view></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="ops/self"></script>
+<script type="text/javascript">
+	if (_self && _self.id && _self.type === 'OPS') {
+		console.log('登录成功.');
+	} else {
+		window.location = 'login.html';
+	}
+</script>
+<script src="components/jquery/dist/jquery.min.js"></script>
+<script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="components/metisMenu/dist/metisMenu.min.js"></script>
+<script src="components/angular/angular.min.js"></script>
+<script src="components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="components/angular-animate/angular-animate.min.js"></script>
+<script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script type="text/javascript" src="components/angular-resource/angular-resource.min.js"></script>
+<script src="components/sweetalert/lib/sweet-alert.min.js"></script>
+<script src="components/iCheck/icheck.min.js"></script>
+<script src="components/ui-select/dist/select.min.js"></script>
+<script src="components/moment/min/moment.min.js"></script>
+<script src="components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+<script src="app/homer.js"></script>
+<script src="app/app.js"></script>
+<script src="app/directives/directives.js"></script>
+<script src="app/factories/sweet-alert.js"></script>
+<script src="app/functional/Statistics.js"></script>
+
+<script type="text/javascript" src="app/functional/ConstructionSite.js"></script>
+<script type="text/javascript" src="app/functional/QrCode.js"></script>
+<script type="text/javascript" src="app/functional/Director.js"></script>
+<script type="text/javascript" src="app/functional/Motorcade.js"></script>
+<script type="text/javascript" src="app/functional/Transport.js"></script>
+<script type="text/javascript" src="app/functional/Materiel.js"></script>
+<script type="text/javascript" src="app/functional/Reward.js"></script>
+
+</html>

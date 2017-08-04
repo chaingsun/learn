@@ -1,0 +1,78 @@
+
+<div class="content">
+
+	<div class="col-sm-3" style="padding-left: 0px; padding-right: 0px;">
+		<div class="panel panel-info">
+			<div class="panel-heading">泥头</div>
+			<div ng-if="sites.length" class="list-group">
+				<a ng-class="{active : checkedSite.id == site.id}" ng-click="checkedSite.id = site.id;checkedSite.name = site.name;"
+					ng-repeat="site in sites" class="list-group-item">
+					<span ng-bind="site.name"></span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3" style="padding-right: 0px; padding-left: 3px;">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				泥尾
+				<button ng-click="add();" type="button" class="pull-right btn btn-success btn-xs">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</button>
+			</div>
+			<div ng-if="destinations.length" class="list-group">
+				<a ng-class="{active : checkedDestination.id == destination.id}"
+					ng-click="checkedDestination.id = destination.id;checkedDestination.name = destination.name;" ng-repeat="destination in destinations"
+					class="list-group-item">
+					<span ng-bind="destination.name"></span>
+					<span class="pull-right">
+						<button ng-click="edit(destination,$event);" type="button" class="btn btn-primary btn-xs">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						</button>
+						<button ng-click="remove(destination,$event);" type="button" class="btn btn-danger btn-xs">
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+						</button>
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6" style="padding-right: 0px; padding-left: 3px;">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				价格
+				<div class="pull-right">
+					<span ng-bind="checkedSite.name" style="color: blue; font-weight: bold;"></span>
+					<span ng-if="checkedDestination.name" style="color: black;">到</span>
+					<span ng-bind="checkedDestination.name" style="color: red; font-weight: bold;"></span>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div ng-if="result.success" class="alert alert-success alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<strong>保存成功!</strong> <span ng-bind="checkedSite.name+'至'+checkedDestination.name+'运输价格保存成功'"></span>
+				</div>
+				<form ng-if="rewards.length" class="form-horizontal">
+					<div ng-repeat="reward in rewards" class="form-group">
+						<label ng-bind="reward.materiel.name" class="col-sm-4 control-label"></label>
+						<div class="col-sm-5">
+							<input ng-model="reward.reward" class="form-control" type="text">
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<div class="col-sm-8 col-sm-offset-4">
+							<button ng-click="doSubmit()" class="btn btn-primary" type="submit">
+								<span class="glyphicon glyphicon-saved"></span>
+								保存
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

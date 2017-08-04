@@ -1,0 +1,63 @@
+<div class="content">
+	<div class="panel panel-info">
+		<div class="panel-heading">主管</div>
+		<div class="panel-body">
+
+			<form class="form-horizontal">
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label">编号</label>
+					<div class="col-sm-6">
+						<input autocomplete="off" disabled="disabled" ng-model="director.code" class="form-control" type="text">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">姓名</label>
+					<div class="col-sm-6">
+						<input ng-model="director.name" class="form-control" type="text">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">手机</label>
+					<div class="col-sm-6">
+						<input ng-model="director.phone" class="form-control" type="text">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">状态</label>
+					<div class="col-sm-6">
+						<div class="checkbox-inline">
+							<label>
+								<input icheck type="radio" ng-value="0" name="director.status" ng-model="director.status">
+								禁用
+							</label>
+						</div>
+						<div class="checkbox-inline">
+							<label>
+								<input icheck type="radio" ng-value="1" name="director.status" ng-model="director.status">
+								可用
+							</label>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<div class="col-sm-8 col-sm-offset-3">
+						<button ng-click="$state.go('directors')" class="btn btn-default" type="submit">取消</button>
+						<button ng-disabled="!director.name || !director.phone" ng-click="doSubmit()" class="btn btn-primary" type="submit">
+							<span class="glyphicon glyphicon-saved"></span>
+							保存
+						</button>
+					</div>
+				</div>
+			</form>
+
+
+		</div>
+	</div>
+</div>

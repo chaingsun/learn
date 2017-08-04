@@ -1,0 +1,35 @@
+
+<div class="content">
+	<div class="col-sm-3" style="padding-left: 0px; padding-right: 0px;">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				车队
+				<button ng-click="add();" type="button" class="pull-right btn btn-success btn-xs">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</button>
+			</div>
+			<div ng-if="motorcades.length" class="list-group">
+				<a ui-sref-active="active" ui-sref="motorcades.drivers({motorcadeId:motorcade.id})" ng-repeat="motorcade in motorcades"
+					class="list-group-item">
+					<span ng-style="{color: motorcade.assign && 'green'}" ng-bind="motorcade.name"></span>
+					<span class="pull-right">
+						<button ng-click="edit(motorcade,$event);" type="button" class="btn btn-primary btn-xs">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						</button>
+						<button ng-click="remove(motorcade,$event);" type="button" class="btn btn-danger btn-xs">
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+						</button>
+					</span>
+				</a>
+			</div>		
+		</div>
+	</div>
+	<div ui-view="driver" class="col-sm-9" style="padding-right: 0px; padding-left: 3px;">
+		<div class="panel panel-info">
+			<div class="panel-heading">司机</div>
+			<div class="panel-body">
+				<p>选择车队加载对应的司机.</p>
+			</div>
+		</div>
+	</div>
+</div>

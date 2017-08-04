@@ -1,0 +1,45 @@
+<div class="content">
+	<div class="panel panel-info">
+		<div class="panel-heading">工地</div>
+		<div class="panel-body">
+			<div class="col-md-12">
+				<button ng-click="$state.go('sites.new')" class="pull-right btn btn-success">
+					<span class="glyphicon glyphicon-plus"></span>
+					新增
+				</button>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>名称</th>
+						<th>编号</th>
+						<th>现场主管</th>
+						<th>地址</th>
+						<th>#</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="site in sites">
+						<td ng-bind="site.name"></td>
+						<td ng-bind="site.code"></td>
+						<td ng-bind="site.director.name"></td>
+						<td ng-bind="site.address"></td>
+						<td>
+							<button ng-click="$state.go('sites.modify',{id:site.id})" class="btn btn-primary btn-xs">
+								<span class="glyphicon glyphicon-trash"></span>
+								修改
+							</button>
+							<button ng-click="remove(site)" class="btn btn-danger btn-xs">
+								<span class="glyphicon glyphicon-edit"></span>
+								删除
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>

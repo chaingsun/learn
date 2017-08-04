@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>土石方</title>
+<link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="components/styles/style.css">
+</head>
+<body class="blank">
+	<div class="color-line "></div>
+	<div class="login-container ">
+		<div ng-app="app" class="row">
+			<div ng-controller="LoginCtrl" class="col-md-12">
+				<div class="text-center m-b-md">
+					<h3>工地工程监控系统后台登录</h3>
+				</div>
+				<div class="hpanel">
+					<div class="panel-body">
+						<form>
+							<div ng-show="errorMsg" class="form-group">
+								<div ng-class="{'alert': errorMsg,'alert-danger':errorMsg }">
+									<span ng-class="{'glyphicon': errorMsg,'glyphicon-exclamation-sign':errorMsg }"></span>
+									<span class="sr-only">Error:</span>
+									<strong ng-bind="'登录失败!'"></strong>
+									<span ng-bind="errorMsg"></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label">手机号</label>
+								<input autocomplete="off" ng-model="example.phone" class="form-control" type="text">
+							</div>
+							<div class="form-group">
+								<label class="control-label">密码</label>
+								<input ng-model="example.pwd" autocomplete="off" class="form-control" type="password">
+							</div>
+							<button ng-click="login();" class="btn btn-success btn-block">登录</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		(function() {
+			angular.module('app', []).controller('LoginCtrl', function($scope, $timeout, $http) {
+				$scope.example = {};
+				$scope.login = function() {
+					$http({
+						method : 'POST',
+						url : 'ops/login',
+						data : $scope.example
+					}).then(function(response) {
+						var result = response.data;
+						if (result.success === false) {
+							$scope.errorMsg = result.errorMsg;
+							$timeout(function() {
+								$scope.errorMsg = null;
+							}, 2000);
+						} else {
+							window.location = 'index.html';
+						}
+					});
+				};
+			});
+		})();
+	</script>
+</body>
+</html>

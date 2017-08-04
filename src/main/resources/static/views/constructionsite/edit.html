@@ -1,0 +1,53 @@
+<div class="content">
+	<div class="panel panel-info">
+		<div class="panel-heading">工地</div>
+		<div class="panel-body">
+
+			<form class="form-horizontal">
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label">工地名称</label>
+					<div class="col-sm-6">
+						<input ng-model="site.name" class="form-control" type="text">
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">编号</label>
+					<div class="col-sm-6">
+						<input ng-model="site.code" class="form-control" type="text">
+					</div>
+				</div>
+
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">现场主管</label>
+					<div class="col-sm-6">
+						<ui-select allow-clear theme="bootstrap" ng-model="site.director"> <ui-select-match placeholder="选择现场主管">{{$select.selected.name}}|{{$select.selected.phone}}</ui-select-match>
+						<ui-select-choices repeat="director in directors | propsFilter: {name: $select.search}">
+						{{director.name}}|{{director.phone}}</ui-select-choices> </ui-select>
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">地址</label>
+					<div class="col-sm-6">
+						<textarea ng-model="site.address" class="form-control"></textarea>
+					</div>
+				</div>
+				<div class="hr-line-dashed"></div>
+				<div class="form-group">
+					<div class="col-sm-8 col-sm-offset-3">
+						<button ng-click="$state.go('sites')" class="btn btn-default" type="submit">取消</button>
+						<button ng-disabled="!site.address || !site.code || !site.name" ng-click="doSubmit()" class="btn btn-primary" type="submit">
+							<span class="glyphicon glyphicon-saved"></span>
+							保存
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+</div>

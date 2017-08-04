@@ -1,0 +1,75 @@
+<div class="content">
+
+	<div class="col-sm-12" style="padding-left: 0px; padding-right: 0px;" ng-if="sites && sites.length==0">
+		<div class="alert alert-danger" role="alert">
+			<strong>无工地数据!</strong> 请先到
+			<a href="#sites" class="alert-link">工地管理</a>
+			添加工地数据.
+		</div>
+	</div>
+
+
+	<div class="col-sm-3" style="padding-left: 0px; padding-right: 0px;">
+		<div ng-if="sites.length>0" class="panel panel-info">
+			<div class="panel-heading">工地</div>
+			<div class="list-group">
+				<a ng-click="loadQrCodes(site)" ng-class="{active:checkedSite.id == site.id}" ng-repeat="site in sites" class="list-group-item"
+					ng-bind="site.name"></a>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-9" style="padding-right: 0px; padding-left: 3px;">
+		<div ng-if="sites.length>0" class="panel panel-info">
+			<div class="panel-heading" ng-bind="checkedSite.name"></div>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<button ng-click="add();" class="btn btn-success" role="button">
+								<span class="glyphicon glyphicon-plus"></span>
+								生成工地二维码
+							</button>
+						</div>
+						<div class="hr-line-dashed"></div>
+					</form>
+				</div>
+				<div ng-repeat="qrCode in qrCodes" class="col-md-6" style="padding: 5px 5px 5px 5px;">
+					<div class="thumbnail">
+						<div ng-if="!qrCode.activated">
+							<button ng-click="remove(qrCode)" type="button" class="close" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<img ng-src="qrcodes/{{qrCode.id}}/view" />
+						<div class="caption">
+
+							<div class="table-responsive">
+								<table class="table" cellspacing="1" cellpadding="1">
+									<tbody>
+										<tr>
+											<td colspan="2"><span ng-if="qrCode.activated" style="color: green; font-weight: bold;">已激活</span> <span
+													ng-if="!qrCode.activated" style="color: red; font-weight: bold;">未激活</span></td>
+										</tr>
+										<tr>
+											<td style="white-space: nowrap;" width="10%;">经度：</td>
+											<td ng-bind="qrCode.longitude || '无'"></td>
+										</tr>
+										<tr>
+											<td>经度：</td>
+											<td ng-bind="qrCode.latitude || '无'"></td>
+										</tr>
+										<tr>
+											<td>备注：</td>
+											<td ng-bind="qrCode.pasteAddress || '无'"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

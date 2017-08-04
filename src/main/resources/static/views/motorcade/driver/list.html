@@ -1,0 +1,61 @@
+
+<div class="panel panel-info">
+	<div class="panel-heading" ng-bind="motorcade.name || 'Loading....'"></div>
+	<div class="panel-body">
+		<div class="col-md-4"></div>
+		<div class="col-md-8">
+			<button ng-click="$state.go('motorcades.drivers.new')" class="pull-right btn btn-success">
+				<span class="glyphicon glyphicon-plus"></span>
+				新增
+			</button>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>所在车队</th>
+					<th>姓名</th>
+					<th>手机</th>
+					<th>编号</th>
+					<th>车牌</th>
+					<th>车号</th>
+					<th>角色</th>
+					<th>状态</th>
+					<th>#</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="driver in drivers">
+					<td ng-bind="driver.motorcade.name"></td>
+					<td ng-bind="driver.name"></td>
+					<td ng-bind="driver.phone"></td>
+					<td ng-bind="driver.code"></td>
+					<td ng-bind="driver.licensePlate"></td>
+					<td ng-bind="driver.carNo"></td>
+					<td><span ng-if="driver.captain" style="font-weight: bold; color: blue;">队长</span> <span ng-if="!driver.captain">队员</span></td>
+					<td><span ng-if="driver.status == 0" style="color: red;">禁用</span> <span style="color: green;" ng-if="driver.status == 1">可用</span></td>
+					<td>
+						<button ng-click="$state.go('motorcades.drivers.modify',{id:driver.id})" class="btn btn-primary btn-xs">
+							<span class="glyphicon glyphicon-trash"></span>
+							修改
+						</button>
+
+						<button ng-click="$state.go('motorcades.drivers.statistics',{id:driver.id})" class="btn btn-info btn-xs">
+							<span class="glyphicon glyphicon-list-alt"></span>
+							运输统计
+						</button>
+						<button ng-click="remove(driver)" class="btn btn-danger btn-xs">
+							<span class="glyphicon glyphicon-edit"></span>
+							删除
+						</button>
+
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+</div>

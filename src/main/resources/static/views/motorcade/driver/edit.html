@@ -1,0 +1,103 @@
+
+<div class="panel panel-info">
+	<div class="panel-heading" ng-bind="driver.motorcade.name || 'Loading....'"></div>
+	<div class="panel-body">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">所在车队</label>
+				<div class="col-sm-6">
+					<input readonly="readonly" ng-model="driver.motorcade.name" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">编号</label>
+				<div class="col-sm-6">
+					<input autocomplete="off" disabled="disabled" ng-model="driver.code" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">姓名</label>
+				<div class="col-sm-6">
+					<input ng-model="driver.name" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">手机</label>
+				<div class="col-sm-6">
+					<input ng-model="driver.phone" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">车牌</label>
+				<div class="col-sm-6">
+					<input ng-model="driver.licensePlate" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">车号</label>
+				<div class="col-sm-6">
+					<input ng-model="driver.carNo" class="form-control" type="text">
+				</div>
+			</div>
+
+
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">角色</label>
+				<div class="col-sm-6">
+					<div class="checkbox-inline">
+						<label>
+							<input icheck type="radio" ng-value="true" name="captain" ng-model="driver.captain">
+							队长
+						</label>
+					</div>
+					<div class="checkbox-inline">
+						<label>
+							<input icheck type="radio" ng-value="false" name="captain" ng-model="driver.captain">
+							队员
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">状态</label>
+				<div class="col-sm-6">
+					<div class="checkbox-inline">
+						<label>
+							<input icheck type="radio" ng-value="0" name="driver.status" ng-model="driver.status">
+							禁用
+						</label>
+					</div>
+					<div class="checkbox-inline">
+						<label>
+							<input icheck type="radio" ng-value="1" name="driver.status" ng-model="driver.status">
+							可用
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="hr-line-dashed"></div>
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-3">
+					<button ng-click="$state.go('motorcades.drivers')" class="btn btn-default" type="submit">取消</button>
+					<button ng-disabled="!driver.licensePlate || !driver.name || !driver.phone " ng-click="doSubmit()" class="btn btn-primary">
+						<span class="glyphicon glyphicon-saved"></span>
+						保存
+					</button>
+				</div>
+			</div>
+		</form>
+
+
+	</div>
+
+
+</div>

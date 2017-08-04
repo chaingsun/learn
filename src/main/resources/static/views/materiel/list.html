@@ -1,0 +1,61 @@
+
+<div class="content">
+	<div class="col-sm-3" style="padding-left: 0px; padding-right: 0px;">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				物料
+				<button ng-click="add();" type="button" class="pull-right btn btn-success btn-xs">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</button>
+			</div>
+			<div ng-if="materiels.length" class="list-group">
+				<a ng-class="{active : checkedMateriel.id == materiel.id}" ng-click="loadMaterielAmounts(materiel);" ng-repeat="materiel in materiels"
+					class="list-group-item">
+					<span ng-bind="materiel.name"></span>
+					<span class="pull-right">
+						<button ng-click="edit(materiel,$event);" type="button" class="btn btn-primary btn-xs">
+							<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+						</button>
+						<button ng-click="remove(materiel,$event);" type="button" class="btn btn-danger btn-xs">
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+						</button>
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-9" style="padding-right: 0px; padding-left: 3px;">
+		<div ng-repeat="site in sites" class="panel panel-info">
+			<div class="panel-heading">
+				<span ng-bind="checkedMateriel.name +'|' +site.name"></span>
+				<button style="margin-top: -7px; margin-right: -9px;" type="button" class="pull-right btn btn-primary" ng-click="doSubmit(site)">保存</button>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal">
+					<fieldset>
+						<legend>
+							{{site.currentYear}}年
+							<div ng-click="loadSiteMaterielAmounts(site,site.currentYear +1)" style="margin-right: 5px;" class="pull-right btn btn-default btn-xs">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+								下一年
+							</div>
+
+							<div ng-click="loadSiteMaterielAmounts(site,site.currentYear - 1)" style="margin-right: 5px;" class="pull-right btn btn-default btn-xs">
+								上一年
+								<span class="glyphicon glyphicon-chevron-left"></span>
+							</div>
+						</legend>
+						<div ng-repeat="amount in site.amounts" class="col-sm-3">
+							<div class="form-group">
+								<label class="col-sm-5 control-label" ng-bind="{{amount.month}}+'月'"></label>
+								<div class="col-sm-7">
+									<input ng-model="amount.amount" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

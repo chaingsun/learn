@@ -1,0 +1,80 @@
+<div class="content">
+	<div class="panel panel-info">
+		<div class="panel-heading">运输记录</div>
+		<div class="panel-body">
+			<div class="col-md-3">
+				<div class="input-group">
+					<input class="form-control" ng-model="example.driver.name" placeholder="司机" type="text">
+					<div class="input-group-btn">
+						<button ng-click="((example.dirver.name = null)==null) && loadTransports();" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<button ng-click="loadTransports();" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<ui-select on-select="loadTransports();"  theme="bootstrap" ng-model="example.constructionSite"> 
+				<ui-select-match allow-clear placeholder="选择工地过滤">{{$select.selected.name}}</ui-select-match> <ui-select-choices
+					repeat="site in sites | propsFilter: {name: $select.search}"> {{site.name}}</ui-select-choices> </ui-select>
+			</div>
+			<div class="col-md-3">
+				<div class="input-group">
+					<input readonly="readonly" type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" show-button-bar="false"
+						ng-model="example.time" is-open="opened" datepicker-options="dateOptions" />
+					<span class="input-group-btn">
+						<button ng-click="example.time=null" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<button type="button" class="btn btn-default" ng-click="open($event)">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>运输号</th>
+						<th>工地</th>
+						<th>司机</th>
+						<th>物料</th>
+						<th>价格</th>
+						<th>满载</th>
+						<th>状态</th>
+						<th>时间</th>
+						<th>泥尾</th>
+						<th>金额</th>
+						<th>#</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="transport in transports">
+						<td>{{transport.code}}</td>
+						<td>{{transport.constructionSite.name}}</td>
+						<td>{{transport.driver.name}}</td>
+						<td>{{transport.materiel.name}}</td>
+						<td>{{transport.price?(transport.price/100):'/'}}</td>
+						<td>{{transport.fully?'是':'否'}}</td>
+						<th>{{'已'+Behaviors[transport.status]}}</th>
+						<td>{{transport.time | date:'yyyy-MM-dd  HH:mm:ss'}}</td>
+						<td>{{transport.destination.name}}</td>
+						<td>{{transport.reward}}</td>
+						<td>
+							<button ng-click="$state.go('transports.view',{id:transport.id})" class="btn btn-warning btn-xs">
+								<span class="glyphicon glyphicon-eye-open"></span>
+								查看
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div ng-if="transports.length" uib-pagination total-items="totalElements" ng-change="loadTransports(page);" ng-model="page"
+			items-per-page="20" max-size="5" class="pagination-sm pull-right" boundary-link-numbers="true" rotate="false"></div>
+	</div>
+</div>

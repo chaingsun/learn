@@ -1,0 +1,58 @@
+
+<div class="panel panel-info">
+	<div class="panel-heading" ng-bind="driver ? (driver.name+'运输统计') : '总运输统计'"></div>
+	<div class="panel-body">
+		<div class="col-md-12">
+			<div class="col-md-4">
+				<ui-select multiple ng-model="statistic.times"> <ui-select-match placeholder="月份选择">{{$item.year+'年'+$item.month+'月'}}</ui-select-match>
+				<ui-select-choices group-by="groupByYear" repeat="time in times"> {{time.year+'年'+time.month+'月'}}</ui-select-choices> </ui-select>
+			</div>
+			<div class="col-md-4">
+				<ui-select multiple ng-model="statistic.sites"> <ui-select-match placeholder="工地">{{$item.name}}</ui-select-match> <ui-select-choices
+					repeat="site in sites"> {{site.name}}</ui-select-choices> </ui-select>
+			</div>
+
+
+			<div class="col-md-4">
+				<ui-select multiple ng-model="statistic.materiels"> <ui-select-match placeholder="物料">{{$item.name}}</ui-select-match> <ui-select-choices
+					repeat="materiel in materiels"> {{materiel.name}}</ui-select-choices> </ui-select>
+			</div>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>工地</th>
+					<th>运输物料</th>
+					<th>年月</th>
+					<th>总运次</th>
+					<th>满载运次</th>
+					<th>总价</th>
+					<th>均价</th>
+					<th>总量</th>
+					<th>均运量</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-show="statistic.display" ng-repeat="statistic in statistics">
+					<td ng-bind="statistic.site.name"></td>
+					<td ng-bind="statistic.materiel.name"></td>
+					<td ng-bind="statistic.year+'年'+statistic.month+'月'"></td>
+					<td ng-bind="statistic.tranTimes"></td>
+					<td ng-bind="statistic.fullyCount"></td>
+					<td ng-bind="statistic.totalPrice"></td>
+					<td ng-bind="statistic.avgPrice"></td>
+					<td ng-bind="statistic.totalAmount||'/'"></td>
+					<td ng-bind="statistic.avgAmount||'/'"></td>
+				</tr>
+				<tr ng-if="loading">
+					<td colspan="9" class="text-center"><img src="components/images/loading-bars.svg" width="32" height="32" /></td>
+				</tr>
+				<tr ng-if="!loading && !statistics.length">
+					<td colspan="9" class="text-center">无统计数据.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<div class="content">
+	<div class="panel panel-info">
+		<div class="panel-heading">主管</div>
+		<div class="panel-body">
+			<div class="col-md-4">
+				<div class="input-group">
+					<input class="form-control" ng-model="keyWord" placeholder="关键字" type="text">
+					<div class="input-group-btn">
+						<button ng-click="((keyWord = null)==null) && loadDirectors();" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+						<button ng-click="loadDirectors();" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-search"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<button ng-click="$state.go('directors.new')" class="pull-right btn btn-success">
+					<span class="glyphicon glyphicon-plus"></span>
+					新增
+				</button>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>姓名</th>
+						<th>手机</th>
+						<th>编号</th>
+						<th>注册时间</th>
+						<th>状态</th>
+						<th>#</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="director in directors">
+						<td ng-bind="director.name"></td>
+						<td ng-bind="director.phone"></td>
+						<td ng-bind="director.code"></td>
+						<td ng-bind="director.regTime | date:'yyyy-MM-dd'"></td>
+						<td><span ng-if="director.status == 0" style="color: red;">禁用</span> <span style="color: green;" ng-if="director.status == 1">可用</span></td>
+						<td>
+							<button ng-click="$state.go('directors.modify',{id:director.id})" class="btn btn-primary btn-xs">
+								<span class="glyphicon glyphicon-trash"></span>
+								修改
+							</button>
+							<button ng-click="remove(director)" class="btn btn-danger btn-xs">
+								<span class="glyphicon glyphicon-edit"></span>
+								删除
+							</button>
+
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<div ng-if="directors.length" uib-pagination total-items="totalElements" ng-change="loadDirectors(page);" ng-model="page"
+			items-per-page="20" max-size="5" class="pagination-sm pull-right" boundary-link-numbers="true" rotate="false"></div>
+
+
+	</div>
+</div>
