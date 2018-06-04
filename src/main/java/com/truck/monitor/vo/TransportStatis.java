@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2015-2020 reserved by jf61.com.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +19,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 运输记录统计数据
  * Created by jufeng on 2017/7/5.
  */
 public class TransportStatis {
